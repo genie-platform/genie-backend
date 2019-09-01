@@ -1,0 +1,12 @@
+{
+  "name": "node-skeleton",
+  "version": "0.1.0",
+  "description": "",
+  "title": "",
+  "url" : "",
+  "sampleUrl": "",
+  "template": {
+  	"withCompare": true,
+  	"withGenerator": true
+  }
+}

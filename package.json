@@ -1,0 +1,65 @@
+{
+  "name": "node-skeleton",
+  "version": "0.1.0",
+  "description": "node-skeleton",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon --trace-warnings ./src/app.js",
+    "debug": "node --inspect-brk --trace-warnings ./src/app.js",
+    "doc": "apidoc -i src -o docs/api && apidoc-markdown -p docs/api -o docs/api.md",
+    "lint": "standard",
+    "lint-fix": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonprou/node-skeleton.git"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ],
+    "globals": [
+      "assert"
+    ],
+    "ignore": [
+      "docs"
+    ]
+  },
+  "_moduleAliases": {
+    "@constants": "./src/constants",
+    "@models": "./src/models",
+    "@routes": "./src/routes",
+    "@utils": "./src/utils",
+    "@services": "./src/services"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.4.4",
+    "async": "^2.6.1",
+    "aws-sdk": "^2.405.0",
+    "body-parser": "^1.18.3",
+    "config": "^1.30.0",
+    "cors": "2.7.1",
+    "debug": "2.6.9",
+    "express": "4.16.3",
+    "express-async-errors": "^2.1.2",
+    "express-jwt": "^5.3.1",
+    "express-paginate": "^1.0.0",
+    "jsonwebtoken": "^8.4.0",
+    "methods": "1.1.2",
+    "module-alias": "^2.1.0",
+    "moment": "^2.23.0",
+    "mongoose": "^5.4.4",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "validator": "^10.10.0"
+  },
+  "devDependencies": {
+    "@rigwild/apidoc-markdown": "^2.0.2",
+    "apidoc": "^0.17.7",
+    "nodemon": "^1.18.11",
+    "standard": "^12.0.1"
+  }
+}
