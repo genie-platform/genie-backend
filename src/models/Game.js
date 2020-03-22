@@ -8,8 +8,6 @@ const GameSchema = new Schema({
   allocatedPrizes: { type: String, default: '0' }
 })
 
-GameSchema.index({ address: 1 }, { unique: true })
-
 const Game = mongoose.model('Game', GameSchema)
 
 module.exports = Game

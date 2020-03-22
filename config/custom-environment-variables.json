@@ -1,28 +1,28 @@
 {
   "api": {
-    "allowCors": "GAMING_API_ALLOW_CORS",
-    "secret": "GAMING_API_SECRET",
-    "tokenExpiresIn": "GAMING_TOKEN_EXPIRES_IN",
+    "allowCors": "CRYPTO_PAYOUTS_API_ALLOW_CORS",
+    "secret": "CRYPTO_PAYOUTS_API_SECRET",
+    "tokenExpiresIn": "CRYPTO_PAYOUTS_TOKEN_EXPIRES_IN",
     "port": "PORT"
   },
   "aws": {
     "secrets": {
-      "secretId": "GAMING_AWS_SECRET_ID",
+      "secretId": "CRYPTO_PAYOUTS_AWS_SECRET_ID",
        "manager": {
-        "region": "GAMING_AWS_SECRET_MANAGER_REGION"
+        "region": "CRYPTO_PAYOUTS_AWS_SECRET_MANAGER_REGION"
       }
     }
   },
   "mongo": {
-    "uri": "GAMING_MONGO_URI",
-    "debug": "GAMING_MONGO_DEBUG"
+    "uri": "CRYPTO_PAYOUTS_MONGO_URI",
+    "debug": "CRYPTO_PAYOUTS_MONGO_DEBUG"
   },
   "secrets": {
     "accounts": {
-      "mnemonic": "GAMING_SECRETS_ACCOUNTS_MNEMONIC"
+      "mnemonic": "CRYPTO_PAYOUTS_SECRETS_ACCOUNTS_MNEMONIC"
     }
   },
   "network": {
-    "provider": "GAMING_PROVIDER"
+    "provider": "CRYPTO_PAYOUTS_PROVIDER"
   }
 }
