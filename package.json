@@ -53,7 +53,7 @@
     "methods": "1.1.2",
     "module-alias": "^2.1.0",
     "moment": "^2.23.0",
-    "mongoose": "^5.4.4",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
