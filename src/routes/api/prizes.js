@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const mongoose = require('mongoose')
+const { fromWei } = require('web3-utils')
 const Prize = mongoose.model('Prize')
 const Game = mongoose.model('Game')
 const auth = require('@routes/auth')
@@ -21,7 +22,7 @@ router.post('/', auth.required, async (req, res) => {
   })
 })
 
-router.post('/redeem', auth.required, async (req, res) => {
+router.post('/claim', auth.required, async (req, res) => {
   const { accountAddress } = req.user
   const { winnerId, winnerAccountAddress } = req.body
   const prize = await Prize.findOne({ winnerId })
@@ -34,6 +35,12 @@ router.post('/redeem', auth.required, async (req, res) => {
   res.json({
     data: prize
   })
+})
+
+router.get('/nextPrize', auth.required, async (req, res, next) => {
+  const { accountAddress } = req.user
+  const nextPrize = fromWei(await getNextPrize(accountAddress))
+  return res.json({ data: nextPrize })
 })
 
 module.exports = router

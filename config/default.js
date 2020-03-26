@@ -3,7 +3,7 @@ module.exports = {
     allowCors: true,
     secret: 'secret',
     secretOptions: {
-      expiresIn: '7d'
+      expiresIn: '30d'
     },
     port: 3000
   },
