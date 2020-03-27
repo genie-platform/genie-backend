@@ -13,6 +13,9 @@ const { getNextPrize, redeemPrize } = require('@services/funding')
  * @apiDescription Creates new prize, but doesn't send it to the user
  *
  * @apiParam {String} winnerId external id of the winner, used to identify the user
+ *
+ * @apiHeader {String} Authorization JSON Web Token in the format "Bearer {jwtToken}"
+ *
  * @apiParamExample {json} Request-Example:
  *  {
  *      "winnerId": "player123",
@@ -42,6 +45,9 @@ router.post('/', auth.required, async (req, res) => {
  *
  * @apiParam {String} winnerId external id of the winner, used to identify the prize
  * @apiParam {String} winnerAccountAddress Ethereum account address of the winner, the prize will be send to this address
+ *
+ * @apiHeader {String} Authorization JSON Web Token in the format "Bearer {jwtToken}"
+ *
  * @apiParamExample {json} Request-Example:
  *  {
  *      "winnerId": "player123",

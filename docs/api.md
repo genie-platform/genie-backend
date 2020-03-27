@@ -19,6 +19,10 @@
 ```
 POST /prizes/claim
 ```
+### Headers
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Authorization | String | <p>JSON Web Token in the format &quot;Bearer {jwtToken}&quot;</p>|
 
 ### Parameter Parameters
 | Name     | Type       | Description                           |
@@ -43,6 +47,10 @@ POST /prizes/claim
 ```
 POST /prizes
 ```
+### Headers
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Authorization | String | <p>JSON Web Token in the format &quot;Bearer {jwtToken}&quot;</p>|
 
 ### Parameter Parameters
 | Name     | Type       | Description                           |
