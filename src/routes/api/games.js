@@ -7,7 +7,7 @@ const Game = mongoose.model('Game')
  * @apiName GetGame
  * @apiGroup Game
  * @apiDescription Retrieves game object
- * 
+ *
 * @apiParam {String} gameId Game's id
  *
 **/

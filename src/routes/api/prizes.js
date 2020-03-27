@@ -10,7 +10,7 @@ const { getNextPrize, redeemPrize } = require('@services/funding')
  * @api {post} /prizes Create new prize
  * @apiName CreatePrize
  * @apiGroup Prize
- * @apiDescription Creates new prize, but doesn't send it to the user
+ * @apiDescription Creates new prize, but doesn't send it to the winner yet
  *
  * @apiParam {String} winnerId external id of the winner, used to identify the user
  *
@@ -38,10 +38,10 @@ router.post('/', auth.required, async (req, res) => {
 })
 
 /**
- * @api {post} /prizes/claim Claiming the prize to transfer it to the user
+ * @api {post} /prizes/claim Claim  prize
  * @apiName ClaimPrize
  * @apiGroup Prize
- * @apiDescription Claiming an existing prize, sending it to the user
+ * @apiDescription Claimes an existing prize and sends it to the user
  *
  * @apiParam {String} winnerId external id of the winner, used to identify the prize
  * @apiParam {String} winnerAccountAddress Ethereum account address of the winner, the prize will be send to this address
@@ -69,9 +69,10 @@ router.post('/claim', auth.required, async (req, res) => {
 })
 
 /**
- * @api {get} /prizes/nextPrize Retrieves the sum of the next prize
+ * @api {get} /prizes/nextPrize Retrieve next prize
  * @apiName GetNextPrize
  * @apiGroup Prize
+ * @apiDescription  Retrieves next prize for the game
  *
 **/
 router.get('/nextPrize', auth.required, async (req, res, next) => {

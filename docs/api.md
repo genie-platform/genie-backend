@@ -7,9 +7,9 @@
 	- [Retrieve game](#Retrieve-game)
 	
 - [Prize](#Prize)
-	- [Claiming the prize to transfer it to the user](#Claiming-the-prize-to-transfer-it-to-the-user)
+	- [Claim  prize](#Claim-prize)
 	- [Create new prize](#Create-new-prize)
-	- [Retrieves the sum of the next prize](#Retrieves-the-sum-of-the-next-prize)
+	- [Retrieve next prize](#Retrieve-next-prize)
 	
 
 # <a name='Game'></a> Game
@@ -31,10 +31,10 @@ GET /games/:gameId
 
 # <a name='Prize'></a> Prize
 
-## <a name='Claiming-the-prize-to-transfer-it-to-the-user'></a> Claiming the prize to transfer it to the user
+## <a name='Claim-prize'></a> Claim  prize
 [Back to top](#top)
 
-<p>Claiming an existing prize, sending it to the user</p>
+<p>Claimes an existing prize and sends it to the user</p>
 
 ```
 POST /prizes/claim
@@ -62,7 +62,7 @@ POST /prizes/claim
 ## <a name='Create-new-prize'></a> Create new prize
 [Back to top](#top)
 
-<p>Creates new prize, but doesn't send it to the user</p>
+<p>Creates new prize, but doesn't send it to the winner yet</p>
 
 ```
 POST /prizes
@@ -86,10 +86,10 @@ POST /prizes
 }
 ```
 
-## <a name='Retrieves-the-sum-of-the-next-prize'></a> Retrieves the sum of the next prize
+## <a name='Retrieve-next-prize'></a> Retrieve next prize
 [Back to top](#top)
 
-
+<p>Retrieves next prize for the game</p>
 
 ```
 GET /prizes/nextPrize
