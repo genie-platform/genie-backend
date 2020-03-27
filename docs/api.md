@@ -3,11 +3,31 @@
 
 
 
+- [Game](#Game)
+	- [Retrieve game](#Retrieve-game)
+	
 - [Prize](#Prize)
 	- [Claiming the prize to transfer it to the user](#Claiming-the-prize-to-transfer-it-to-the-user)
 	- [Create new prize](#Create-new-prize)
 	- [Retrieves the sum of the next prize](#Retrieves-the-sum-of-the-next-prize)
 	
+
+# <a name='Game'></a> Game
+
+## <a name='Retrieve-game'></a> Retrieve game
+[Back to top](#top)
+
+<p>Retrieves game object</p>
+
+```
+GET /games/:gameId
+```
+
+### Parameter Parameters
+| Name     | Type       | Description                           |
+|:---------|:-----------|:--------------------------------------|
+| gameId | `String` | <p>Game's id</p> |
+
 
 # <a name='Prize'></a> Prize
 
