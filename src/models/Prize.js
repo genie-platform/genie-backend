@@ -7,7 +7,7 @@ const PrizeSchema = new Schema({
   winnerId: { type: String, required: [true, "can't be blank"] },
   winnerAccountAddress: { type: String },
   redeemed: { type: Boolean, default: false }
-})
+}, { timestamps: true })
 
 const Prize = mongoose.model('Prize', PrizeSchema)
 

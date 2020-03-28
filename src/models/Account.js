@@ -7,7 +7,7 @@ const AccountSchema = new Schema({
   nonce: { type: Number, default: 0 },
   isLocked: { type: Boolean, default: false },
   lockingTime: { type: Date }
-})
+}, { timestamps: true })
 
 AccountSchema.index({ address: 1 }, { unique: true })
 
