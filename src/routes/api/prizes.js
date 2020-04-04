@@ -33,7 +33,7 @@ router.post('/', auth.required, async (req, res) => {
   }).save()
 
   res.json({
-    data: prize
+    data: { ...prize.toJSON(), amount: fromWei(prize.amount) }
   })
 })
 
@@ -51,20 +51,22 @@ router.post('/', auth.required, async (req, res) => {
  * @apiParamExample {json} Request-Example:
  *  {
  *      "winnerId": "player123",
+ *      "winnerAccountAddress": "0x123"
  *  }
 **/
 router.post('/claim', auth.required, async (req, res) => {
   const { accountAddress } = req.user
   const { winnerId, winnerAccountAddress } = req.body
-  const prize = await Prize.findOne({ winnerId })
-  if (prize.redeemed) {
-    return res.send({ error: 'Prize already have been redeemed' }).status(404)
+
+  const game = await Game.findOne({ accountAddress })
+  const prizes = await Prize.find({ winnerId, game: game._id, redeemed: false })
+  for (let prize of prizes) {
+    prize.winnerAccountAddress = winnerAccountAddress
+    redeemPrize(accountAddress, prize)
   }
-  prize.winnerAccountAddress = winnerAccountAddress
-  redeemPrize(accountAddress, prize)
 
   res.json({
-    data: prize
+    data: prizes
   })
 })
 

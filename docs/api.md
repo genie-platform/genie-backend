@@ -56,6 +56,7 @@ POST /prizes/claim
 ```json
 {
     "winnerId": "player123",
+    "winnerAccountAddress": "0x123"
 }
 ```
 
