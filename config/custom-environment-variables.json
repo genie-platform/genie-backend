@@ -1,28 +1,28 @@
 {
   "api": {
-    "allowCors": "CRYPTO_PAYOUTS_API_ALLOW_CORS",
-    "secret": "CRYPTO_PAYOUTS_API_SECRET",
-    "tokenExpiresIn": "CRYPTO_PAYOUTS_TOKEN_EXPIRES_IN",
+    "allowCors": "GENNIE_API_ALLOW_CORS",
+    "secret": "GENNIE_API_SECRET",
+    "tokenExpiresIn": "GENNIE_TOKEN_EXPIRES_IN",
     "port": "PORT"
   },
   "aws": {
     "secrets": {
-      "secretId": "CRYPTO_PAYOUTS_AWS_SECRET_ID",
+      "secretId": "GENNIE_AWS_SECRET_ID",
        "manager": {
-        "region": "CRYPTO_PAYOUTS_AWS_SECRET_MANAGER_REGION"
+        "region": "GENNIE_AWS_SECRET_MANAGER_REGION"
       }
     }
   },
   "mongo": {
-    "uri": "CRYPTO_PAYOUTS_MONGO_URI",
-    "debug": "CRYPTO_PAYOUTS_MONGO_DEBUG"
+    "uri": "GENNIE_MONGO_URI",
+    "debug": "GENNIE_MONGO_DEBUG"
   },
   "secrets": {
     "accounts": {
-      "mnemonic": "CRYPTO_PAYOUTS_SECRETS_ACCOUNTS_MNEMONIC"
+      "mnemonic": "GENNIE_SECRETS_ACCOUNTS_MNEMONIC"
     }
   },
   "network": {
-    "provider": "CRYPTO_PAYOUTS_PROVIDER"
+    "provider": "GENNIE_PROVIDER"
   }
 }
