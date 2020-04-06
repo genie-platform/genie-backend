@@ -1,7 +1,7 @@
 {
-  "name": "node-skeleton",
+  "name": "genie",
   "version": "0.1.0",
-  "description": "node-skeleton",
+  "description": "genie",
   "main": "app.js",
   "scripts": {
     "start": "nodemon --trace-warnings ./src/app.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leonprou/node-skeleton.git"
+    "url": "git+https://github.com/leonprou/genie.git"
   },
   "standard": {
     "env": [

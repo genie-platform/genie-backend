@@ -1,28 +1,28 @@
 {
   "api": {
-    "allowCors": "GENNIE_API_ALLOW_CORS",
-    "secret": "GENNIE_API_SECRET",
-    "tokenExpiresIn": "GENNIE_TOKEN_EXPIRES_IN",
+    "allowCors": "GENIE_API_ALLOW_CORS",
+    "secret": "GENIE_API_SECRET",
+    "tokenExpiresIn": "GENIE_TOKEN_EXPIRES_IN",
     "port": "PORT"
   },
   "aws": {
     "secrets": {
-      "secretId": "GENNIE_AWS_SECRET_ID",
+      "secretId": "GENIE_AWS_SECRET_ID",
        "manager": {
-        "region": "GENNIE_AWS_SECRET_MANAGER_REGION"
+        "region": "GENIE_AWS_SECRET_MANAGER_REGION"
       }
     }
   },
   "mongo": {
-    "uri": "GENNIE_MONGO_URI",
-    "debug": "GENNIE_MONGO_DEBUG"
+    "uri": "GENIE_MONGO_URI",
+    "debug": "GENIE_MONGO_DEBUG"
   },
   "secrets": {
     "accounts": {
-      "mnemonic": "GENNIE_SECRETS_ACCOUNTS_MNEMONIC"
+      "mnemonic": "GENIE_SECRETS_ACCOUNTS_MNEMONIC"
     }
   },
   "network": {
-    "provider": "GENNIE_PROVIDER"
+    "provider": "GENIE_PROVIDER"
   }
 }
