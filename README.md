@@ -7,9 +7,13 @@ Genie is a plaftorm for game developers to reward their players. You can give a 
 
 # How it works
 
-Genie levarages the Ethereum Network, and reward users with stablecoins pegged to dollar. Now [DAI](https://makerdao.com/en/) is supported. Genie proposes a new funding model, in which game developers seting up a fund which interest rate is used to pay for the rewards. The fund earns interest the [Compound Protocol](https://compound.finance/).
+Genie levarages the Ethereum Network, and reward users with stablecoins pegged to dollar. Now [DAI](https://makerdao.com/en/) is supported. Genie proposes a new funding model, in which game developers seting up a fund which interest rate is used to pay for the rewards. The fund earns interest by using the [Compound Protocol](https://compound.finance/).
 
 # Learn more
-- Read the [API docs](/docs/api.md)
-- See the [demo repo](https://github.com/leonprou/crypto-game-demo)
+- [Running Genie locally](/docs/guides/0_RUNNING_LOCALLY.md)
+- [Bootrapping your game](/docs/guides/1_GAME_BOOTSTRAPING.md)
+- [Integrating Genie in your game flow](/docs/guides/2_FLOW_INTEGRATION.md)
+- [API docs](/docs/api.md)
+- [Toss a coin demo repo](https://github.com/leonprou/crypto-game-demo)
+- [Last survivor game repo](https://github.com/leonprou/last-survivor)
 
