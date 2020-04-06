@@ -11,9 +11,8 @@ Genie levarages the Ethereum Network, and reward users with stablecoins pegged t
 
 # Learn more
 - [Running Genie locally](/docs/guides/0_RUNNING_LOCALLY.md)
-- [Bootrapping your game](/docs/guides/1_GAME_BOOTSTRAPING.md)
+- [Bootstrapping your game](/docs/guides/1_GAME_BOOTSTRAPPING.md)
 - [Integrating Genie in your game flow](/docs/guides/2_FLOW_INTEGRATION.md)
 - [API docs](/docs/api.md)
 - [Toss a coin demo repo](https://github.com/leonprou/crypto-game-demo)
 - [Last survivor game repo](https://github.com/leonprou/last-survivor)
-
