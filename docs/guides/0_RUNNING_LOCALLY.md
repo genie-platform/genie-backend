@@ -1,3 +1,5 @@
+# Running locally
+
 - Start a mongo server or get an access to one
 - First clone the project and install dependencies
   ```
