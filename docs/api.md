@@ -4,6 +4,7 @@
 
 
 - [Game](#Game)
+	- [Create new game](#Create-new-game)
 	- [Retrieve game](#Retrieve-game)
 	
 - [Prize](#Prize)
@@ -13,6 +14,29 @@
 	
 
 # <a name='Game'></a> Game
+
+## <a name='Create-new-game'></a> Create new game
+[Back to top](#top)
+
+<p>Creates new game with a funding, returs the game and a JWT to access it</p>
+
+```
+POST /games/
+```
+
+### Parameter Parameters
+| Name     | Type       | Description                           |
+|:---------|:-----------|:--------------------------------------|
+| name | `String` | <p>Game's name</p> |
+
+### Param Examples
+`json` - Request-Example:
+
+```json
+{
+    "name": "My game",
+}
+```
 
 ## <a name='Retrieve-game'></a> Retrieve game
 [Back to top](#top)

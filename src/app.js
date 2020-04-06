@@ -2,12 +2,12 @@ require('module-alias/register')
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
-const mongoose = require('mongoose')
 const paginate = require('express-paginate')
 const process = require('process')
 const util = require('util')
 const config = require('config')
 require('express-async-errors')
+require('./services/mongoose')
 
 async function init () {
   console.log(util.inspect(config, { depth: null }))
@@ -27,17 +27,6 @@ async function init () {
   app.use(bodyParser.json())
 
   app.use(paginate.middleware(10, 50))
-
-  mongoose.set('debug', config.get('mongo.debug'))
-  mongoose.set('useFindAndModify', false)
-  mongoose.set('useCreateIndex', true)
-
-  mongoose.connect(config.get('mongo.uri'), config.get('mongo.options')).catch((error) => {
-    console.error(error)
-    process.exit(1)
-  })
-
-  require('./models')
 
   app.use(require('./routes'))
 
