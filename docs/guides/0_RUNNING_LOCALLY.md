@@ -1,18 +1,18 @@
 # Running locally
 
-- Start a mongo server or get an access to one
-- First clone the project and install dependencies
+1. Start a [mongoDB server](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/) or get an access to one. Will be used when bootstrapping a game.
+2. First clone the project and install dependencies
   ```
   git clone https://github.com/leonprou/genie.git
-  cd gennie
+  cd genie
   npm install
   ```
-- Some environment variables are needed to be defined.
+3. Some environment variables are needed to be defined.
  ```
  export GENIE_PROVIDER="ethereum provider for the Kovan network here"
- # Just Kovan is supported for now hence the contracts addresses are hardcoded
+ # Just Kovan testnet is supported for now hence the contracts addresses are hardcoded
 
  export GENIE_SECRETS_ACCOUNTS_MNEMONIC="mnemonic seed"
  # Users accounts are generated from the seed, this seed controlls all the funds.
  ```
- - Start the server with `npm start`
+ 4. Start the server with `npm start`

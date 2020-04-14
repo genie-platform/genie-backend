@@ -1,12 +1,12 @@
 {
   "name": "Genie API",
   "version": "0.1.0",
-  "description": "Developers API for Gennie platform",
-  "title": "Developers API for Gennie platform",
-  "url" : "https://github.com/leonprou/gennie",
+  "description": "Developers API for Genie platform",
+  "title": "Developers API for Genie platform",
+  "url": "https://github.com/leonprou/genie",
   "sampleUrl": "http://localhost:3000/api/v1",
   "template": {
-  	"withCompare": true,
-  	"withGenerator": true
+    "withCompare": true,
+    "withGenerator": true
   }
 }
