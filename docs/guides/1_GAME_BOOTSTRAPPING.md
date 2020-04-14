@@ -11,7 +11,7 @@ For now the process is rather manual.
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"name":"My great tournament"}' \
-  http://localhost:3000/api/v1/game
+  http://localhost:3000/api/v1/games
   ```
 
   This will return a game object with account address in it (this account will controll your game funding), and a JWT that gives access to game management.
