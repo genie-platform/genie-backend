@@ -136,9 +136,7 @@ const send = async ({ web3, address }, method, options, handlers) => {
   console.log({ address })
   const account = await Account.findOne({ address })
   for (let i = 0; i < retries; i++) {
-    debugger
     const response = await doSend(i) || {}
-    debugger
     const { receipt } = response
     if (receipt) {
       account.nonce++

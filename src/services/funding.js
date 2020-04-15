@@ -56,7 +56,6 @@ const redeemPrize = async (accountAddress, prize) => {
     from: account.address
   })
 
-  debugger
   if (!receipt || !receipt.status) {
     throw new Error('Could not redeem prize')
   }
@@ -68,7 +67,6 @@ const redeemPrize = async (accountAddress, prize) => {
     from: account.address
   })
 
-  debugger
   if (!transferReceipt || !transferReceipt.status) {
     throw new Error('Could not send the prize to winner')
   }
