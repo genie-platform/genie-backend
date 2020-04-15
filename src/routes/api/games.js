@@ -23,7 +23,7 @@ router.get('/:gameId', async (req, res, next) => {
  * @api {post} /games/ Create new game
  * @apiName CreateGame
  * @apiGroup Game
- * @apiDescription Creates new game with a funding, returs the game and a JWT to access it
+ * @apiDescription Creates new game with a funding
  *
  * @apiParam {String} name Game's name
  *
@@ -37,8 +37,7 @@ router.post('/', async (req, res, next) => {
   const { name } = req.body
   const account = await createAccount()
   const game = await new Game({ name, accountAddress: account.address }).save()
-  const jwtToken = generateToken(account.address)
-  return res.json({ data: { game, jwtToken } })
+  return res.json({ response : "Game Created.", data: game  })
 })
 
 module.exports = router
