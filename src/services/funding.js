@@ -20,7 +20,7 @@ const getInvestedBalance = (accountAddress) => {
   return cDaiToken.methods.balanceOfUnderlying(accountAddress).call()
 }
 
-const getNextPrize = async (accountAddress) => {
+const getCurrentPrize = async (accountAddress) => {
   const { fund } = await Game.findOne({ accountAddress })
   const investedBalance = await getInvestedBalance(accountAddress)
   return new BigNumber(investedBalance).minus(fund).toString()
@@ -78,7 +78,7 @@ const redeemPrize = async (accountAddress, prize) => {
 module.exports = {
   getBalance,
   getInvestedBalance,
-  getNextPrize,
+  getCurrentPrize,
   invest,
   redeemPrize
 }

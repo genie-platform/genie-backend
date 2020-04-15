@@ -4,7 +4,7 @@ const Account = mongoose.model('Account')
 const Game = mongoose.model('Game')
 const auth = require('@routes/auth')
 const { fromWei, toWei } = require('web3-utils')
-const { getBalance, invest, getNextPrize } = require('@services/funding')
+const { getBalance, invest, getCurrentPrize } = require('@services/funding')
 
 router.get('/', auth.required, async (req, res, next) => {
   const { accountAddress } = req.user
@@ -16,7 +16,7 @@ router.get('/balance', auth.required, async (req, res, next) => {
   const { accountAddress } = req.user
   const available = fromWei(await getBalance(accountAddress))
   const { fund } = await Game.findOne({ accountAddress })
-  const nextPrize = fromWei(await getNextPrize(accountAddress))
+  const nextPrize = fromWei(await getCurrentPrize(accountAddress))
   return res.json({ data: { balance: { available, fund: fromWei(fund), nextPrize } } })
 })
 
