@@ -121,7 +121,7 @@ const send = async ({ web3, address }, method, options, handlers) => {
   }
 
   const from = address
-  const gas = options.gas || await method.estimateGas({ from })
+  const gas = options.gas || await method.estimateGas({ from }) + 50000 //Buffer of gas limit so we do not run out of gas when retrieving funds
   const gasPrice = await getGasPrice(web3)
   console.log({ address })
   const account = await Account.findOne({ address })

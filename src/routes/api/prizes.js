@@ -52,17 +52,23 @@ router.post('/', auth.required, async (req, res) => {
  *  {
  *      "winnerId": "player123",
  *      "winnerAccountAddress": "0x123"
+ *      "unlockAllFunds" : true
  *  }
 **/
 router.post('/claim', auth.required, async (req, res) => {
   const { accountAddress } = req.user
   const { winnerId, winnerAccountAddress } = req.body
+  
+  //unlockAllFunds
+  //true = unlock funds plus profits from compound
+  //false = unlock only profits from compound
+  const { unlockAllFunds } = req.body
 
   const game = await Game.findOne({ accountAddress })
   const prizes = await Prize.find({ winnerId, game: game._id, redeemed: false })
   for (let prize of prizes) {
     prize.winnerAccountAddress = winnerAccountAddress
-    redeemPrize(accountAddress, prize)
+    redeemPrize(accountAddress, prize, unlockAllFunds)
   }
 
   res.json({

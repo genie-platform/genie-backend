@@ -46,11 +46,16 @@ const invest = async (accountAddress, balance) => {
   }
 }
 
-const redeemPrize = async (accountAddress, prize) => {
+const redeemPrize = async (accountAddress, prize, unlockAllFunds) => {
+  //Unlock Funds
   const account = await Account.findOne({ address: accountAddress })
   const { createContract, send, createMethod } = createNetwork(account)
   const cDaiTokenWithSigner = createContract(CDaiAbi, config.get('network.addresses.CDaiToken'))
-  const method = createMethod(cDaiTokenWithSigner, 'redeemUnderlying', prize.amount)
+  const iBalance;
+  if(unlockAllFunds){
+    iBalance = await getInvestedBalance(gameAddress)
+  }
+  const method = createMethod(cDaiTokenWithSigner, 'redeemUnderlying', unlockAllFunds === true ? iBalance : prize.amount)
 
   const receipt = await send(method, {
     from: account.address
@@ -60,6 +65,7 @@ const redeemPrize = async (accountAddress, prize) => {
     throw new Error('Could not redeem prize')
   }
 
+  //Send Prize to winner
   const daiTokenWithSigner = createContract(DaiAbi, config.get('network.addresses.DaiToken'))
   const transferMethod = createMethod(daiTokenWithSigner, 'transfer', prize.winnerAccountAddress, prize.amount)
 
