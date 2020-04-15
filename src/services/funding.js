@@ -35,7 +35,7 @@ const invest = async (accountAddress, balance) => {
   const receipt = await send(method, {
     from: account.address
   })
-  console.log({ receipt })
+
   if (receipt) {
     console.log('Investing was successful')
     const game = await Game.findOne({ accountAddress: account.address })
@@ -56,7 +56,8 @@ const redeemPrize = async (accountAddress, prize) => {
     from: account.address
   })
 
-  if (!receipt) {
+  debugger
+  if (!receipt || !receipt.status) {
     throw new Error('Could not redeem prize')
   }
 
@@ -67,6 +68,11 @@ const redeemPrize = async (accountAddress, prize) => {
     from: account.address
   })
 
+  debugger
+  if (!transferReceipt || !transferReceipt.status) {
+    throw new Error('Could not send the prize to winner')
+  }
+
   if (transferReceipt) {
     prize.redeemed = true
     prize.save()
@@ -75,10 +81,18 @@ const redeemPrize = async (accountAddress, prize) => {
   }
 }
 
+const redeemPrizes = async (winnerAccountAddress, accountAddress, prizes) => {
+  for (let prize of prizes) {
+    prize.winnerAccountAddress = winnerAccountAddress
+    await redeemPrize(accountAddress, prize)
+  }
+}
+
 module.exports = {
   getBalance,
   getInvestedBalance,
   getNextPrize,
   invest,
-  redeemPrize
+  redeemPrize,
+  redeemPrizes
 }

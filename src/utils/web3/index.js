@@ -60,10 +60,20 @@ const getGasPrice = async (web3) => {
 
 const retries = 3
 
-const TRANSACTION_HASH_IMPORTED = 'Error: Returned error: Transaction with the same hash was already imported.'
-const TRANSACTION_NONCE_TOO_LOW = 'Error: Returned error: Transaction nonce is too low. Try incrementing the nonce.'
-const TRANSACTION_TIMEOUT = 'Error: Timeout exceeded during the transaction confirmation process. Be aware the transaction could still get confirmed!'
+const TRANSACTION_HASH_IMPORTED = 'Transaction with the same hash was already imported'
+const TRANSACTION_NONCE_TOO_LOW = 'Transaction nonce is too low'
+const TRANSACTION_TIMEOUT = 'Timeout exceeded during the transaction confirmation process'
+const TRANSACTION_REVERTED = 'Transaction has been reverted by the EVM'
 
+const pickErrorHandler = (errorHandlers, error) => {
+  const errorMessage = (error.message || error.error || error).toString()
+  for (const errorType of Object.keys(errorHandlers)) {
+    if (errorMessage.includes(errorType)) {
+      return errorHandlers[errorType]
+    }
+  }
+
+}
 const send = async ({ web3, address }, method, options, handlers) => {
   const doSend = async (retry) => {
     let transactionHash
@@ -80,11 +90,16 @@ const send = async ({ web3, address }, method, options, handlers) => {
     })
 
     try {
+      debugger
       const receipt = await promise
       console.log(`method ${methodName} succeeded in tx ${receipt.transactionHash}`)
       return { receipt }
     } catch (error) {
       console.error(error)
+      debugger
+      if (error.receipt) {
+        return error
+      }
 
       const updateNonce = async () => {
         console.log('updating the nonce')
@@ -96,7 +111,7 @@ const send = async ({ web3, address }, method, options, handlers) => {
       if (error.receipt) {
         await updateNonce()
         account.save()
-        throw error
+        // throw error
       }
 
       const errorHandlers = {
@@ -107,15 +122,17 @@ const send = async ({ web3, address }, method, options, handlers) => {
           }
         },
         [TRANSACTION_NONCE_TOO_LOW]: updateNonce,
-        [TRANSACTION_TIMEOUT]: updateNonce
+        [TRANSACTION_TIMEOUT]: updateNonce,
+        [TRANSACTION_REVERTED]: () => { throw error }
       }
 
-      const errorMessage = doSend.message || error.error || error
-      if (errorHandlers.hasOwnProperty(errorMessage)) {
-        return errorHandlers[errorMessage]()
+      const errorHandler = pickErrorHandler(errorHandlers, error)
+      if (errorHandler) {
+        await errorHandler()
       } else {
-        console.log('No error handler found, using the default one.')
-        throw error
+        console.log('No error handler found, using the default one. (updating the nonce)')
+        updateNonce()
+        // throw error
       }
     }
   }
@@ -126,11 +143,17 @@ const send = async ({ web3, address }, method, options, handlers) => {
   console.log({ address })
   const account = await Account.findOne({ address })
   for (let i = 0; i < retries; i++) {
+    debugger
     const response = await doSend(i) || {}
+    debugger
     const { receipt } = response
     if (receipt) {
       account.nonce++
       await Account.updateOne({ address }, { nonce: account.nonce })
+
+      if (!receipt.status) {
+        console.warn(`Transaction ${receipt.transactionHash} is reverted`)
+      }
       return receipt
     }
   }
