@@ -2,6 +2,11 @@
 
 Genie is a plaftorm for game developers to reward their players. You can give a reward for winning a competition. As a game developer you write the logic that rewards your users, and Genie provides an easy API to make it work. And also, you don't pay for the rewards.
 
+
+# We are Live!
+
+Genie's alpha version is up and running, connected to the Kovan network. Try it on http://api.thegenie.xyz/.
+
 # How it works
 
 Genie levarages the Ethereum Network, and reward users with stablecoins pegged to dollar. Now [DAI](https://makerdao.com/en/) is supported. Genie proposes a new funding model, in which game developers seting up a fund which interest rate is used to pay for the rewards. The fund earns interest by using the [Compound Protocol](https://compound.finance/).
