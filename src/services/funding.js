@@ -36,14 +36,14 @@ const invest = async (accountAddress, balance) => {
     from: account.address
   })
 
-  if (receipt) {
-    console.log('Investing was successful')
-    const game = await Game.findOne({ accountAddress: account.address })
-    game.fund = new BigNumber(game.fund).plus(balance).toString()
-    await game.save()
-  } else {
-    console.log('Investing failed')
+  if (!receipt || !receipt.status) {
+    throw new Error('Could not invest DAI')
   }
+
+  console.log('Investing was successful')
+  const game = await Game.findOne({ accountAddress: account.address })
+  game.fund = new BigNumber(game.fund).plus(balance).toString()
+  return game.save()
 }
 
 const redeemPrize = async (accountAddress, prize) => {
