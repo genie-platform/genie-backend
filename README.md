@@ -5,7 +5,7 @@ Genie is a plaftorm for game developers to reward their players. You can give a 
 
 # We are Live!
 
-Genie's alpha version is up and running, connected to the Kovan network. Try it on http://api.thegenie.xyz/.
+Genie's alpha version is up and running, connected to the Kovan network. Try it on https://api.thegenie.xyz/.
 
 # How it works
 
