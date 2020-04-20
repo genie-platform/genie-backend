@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const mongoose = require('mongoose')
+const BigNumber = require('bignumber.js')
 const Account = mongoose.model('Account')
 const Game = mongoose.model('Game')
 const auth = require('@routes/auth')
@@ -22,13 +23,20 @@ router.get('/balance', auth.required, async (req, res, next) => {
 
 router.post('/invest', auth.required, async (req, res) => {
   const { accountAddress } = req.user
-  if (req.body.balance) {
-    invest(accountAddress, toWei(String(req.body.balance)))
-  } else {
-    const balance = await getBalance(accountAddress)
-    invest(accountAddress, balance)
+  const accountBalance = await getBalance(accountAddress)
+  const balance = req.body.balance
+    ? toWei(String(req.body.balance))
+    : accountBalance
+
+  if (new BigNumber(balance).isGreaterThan(accountBalance)) {
+    return res.status(400).send({ error: 'Investing more than account balance, please topup' })
   }
-  res.json({ status: 'ok' })
+  if (balance === '0') {
+    return res.status(400).send({ error: 'Cannot invest 0, please topup' })
+  }
+  invest(accountAddress, balance)
+
+  res.send({ status: 'ok' })
 })
 
 module.exports = router
