@@ -9,13 +9,13 @@ module.exports = {
     auth: {
       google: {
         clientId:
-          '258894479393-0msb45loib4653r6kq2bc21kdiq0jbr4.apps.googleusercontent.com',
+          '409833050808-omel02bdcf5h2pvbmc7k1mg8l8okh9u0.apps.googleusercontent.com',
       },
     },
   },
   mongo: {
     debug: true,
-    uri: 'mongodb://localhost/gaming',
+    uri: 'mongodb://localhost/admin',
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
