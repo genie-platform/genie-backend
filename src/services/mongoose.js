@@ -7,7 +7,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 mongoose
-  .connect(config.get('mongo.uri'), config.get('mongo.options'))
+  .connect(config.get('mongo.gamesUri'), config.get('mongo.options'))
   .catch((error) => {
     console.error(error);
     process.exit(1);
