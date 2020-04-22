@@ -1,6 +1,6 @@
 # What is Genie
 
-Genie is an interest based reward platform. It can be used for games, competitions, or any other kind of shared goal encouragement. Games and competitions can reward the winning players, and local communities can incetivize favourable behaviour like disposal reuse.
+Genie is an interest based reward platform. It can be used for games, competitions, or any other kind of shared goal encouragement. Games and competitions can reward the winning players, and local communities can incetivize favourable behaviour like recycling.
 
 # How it works
 Genie levarages the Ethereum Network, it uses [DAI](https://makerdao.com/) (dollar-pegged stablecoin) and the [Compound Protocol](https://compound.finance/) to generate interest.
