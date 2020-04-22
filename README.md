@@ -13,7 +13,7 @@ Genie levarages the Ethereum Network, it uses [DAI](https://makerdao.com/) (doll
 
 # We are Live!
 
-Genie's alpha version is up and running, connected to the Kovan network. Try it on https://api.thegenie.xyz/.
+Genie's alpha version is up and running, connected to the Kovan network. Try it on https://api.thegenie.xyz/. Or play the [first game](http://survivor.thegenie.xyz/) built with genie.
 
 # Use cases
 
@@ -30,4 +30,4 @@ A chess tournament where to participate you lock 100$. When the tournament is do
 - [Integrating Genie in your game flow](/docs/guides/2_FLOW_INTEGRATION.md)
 - [API docs](/docs/api.md)
 - [Toss a coin demo repo](https://github.com/leonprou/crypto-game-demo)
-- [Last survivor game repo](https://github.com/leonprou/last-survivor)
+- [Last survivor game repo](https://github.com/leonprou/last-survivor), [play it live](https://survivor.thegenie.xyz/)
