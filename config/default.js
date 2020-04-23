@@ -16,7 +16,6 @@ module.exports = {
   mongo: {
     debug: true,
     uri: 'mongodb://localhost/genie',
-    gamesUri: 'mongodb://localhost/games',
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true

@@ -5,18 +5,6 @@ const mongoose = require('mongoose')
 const { OAuth2Client } = require('google-auth-library')
 require('../../models')
 
-// db connection init
-mongoose.set('debug', config.get('mongo.debug'))
-mongoose.set('useFindAndModify', false)
-mongoose.set('useCreateIndex', true)
-
-mongoose
-  .connect(config.get('mongo.uri'), config.get('mongo.options'))
-  .catch((error) => {
-    console.error(error)
-    process.exit(1)
-  })
-
 const clientId = config.get('api.auth.google.clientId')
 const secret = config.get('api.secret')
 const secretOptions = config.get('api.secretOptions')
