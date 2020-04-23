@@ -1,4 +1,4 @@
-require('./Account');
-require('./Game');
-require('./Prize');
-require('./User');
+require('./Account')
+require('./Game')
+require('./Prize')
+require('./User')

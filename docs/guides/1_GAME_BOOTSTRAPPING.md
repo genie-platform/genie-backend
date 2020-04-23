@@ -5,7 +5,7 @@ For now the process is rather manual.
 
 
 ## Prerequisites
-Define the $GENIE_API_URL environment variable in your shell. Running Genie locally the url is usually http://localhost:3000, while the hosted version is on https://api.thegenie.xyz/. 
+Define the $GENIE_API_URL environment variable in your shell. Running Genie locally the url is usually http://localhost:3000, while the hosted version is on https://api.thegenie.xyz/.
 For example to define it for local development:
 ```
 export GENIE_API_URL=http://localhost:3000
@@ -47,7 +47,7 @@ export GENIE_API_URL=http://localhost:3000
 
 2. Fund the account address you recieved with Ether so it cand pay for the transactions gas. You can [get Kovan ether here.](https://faucet.kovan.network/)
 
-3. Fund the account address you recieved with DAI so it can be invested. You can [get Kovan DAI here.](https://oasis.app/trade/instant)
+3. Fund the account address you recieved with DAI so it can be invested. You can [get Kovan DAI here.](https://mcd-cdp-portal-git-develop.mkr-js-prod.now.sh/borrow?network=kovan)
 
 4. Invest the DAI in the compound protocol:
 
