@@ -6,7 +6,8 @@ const AccountSchema = new Schema({
   childIndex: { type: Number, required: [true, "can't be blank"] },
   nonce: { type: Number, default: 0 },
   isLocked: { type: Boolean, default: false },
-  lockingTime: { type: Date }
+  lockingTime: { type: Date },
+  isCDaiApproved: { type: Boolean, default: false }
 }, { timestamps: true })
 
 AccountSchema.index({ address: 1 }, { unique: true })

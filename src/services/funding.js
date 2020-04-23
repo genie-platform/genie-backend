@@ -26,8 +26,32 @@ const getNextPrize = async (accountAddress) => {
   return new BigNumber(investedBalance).minus(fund).toString()
 }
 
+const approveCDai = async (account) => {
+  const MAX_INT_VALUE = '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+  const { createContract, send, createMethod } = createNetwork(account)
+  const daiTokenWithSigner = createContract(DaiAbi, config.get('network.addresses.DaiToken'))
+  const approveMethod = createMethod(
+    daiTokenWithSigner,
+    'approve',
+    config.get('network.addresses.CDaiToken'), MAX_INT_VALUE
+  )
+
+  const receipt = await send(approveMethod, {
+    from: account.address
+  })
+
+  if (!receipt || !receipt.status) {
+    throw new Error('Could not approve DAI')
+  }
+  account.isCDaiApproved = true
+  return account.save()
+}
+
 const invest = async (accountAddress, balance) => {
   const account = await Account.findOne({ address: accountAddress })
+  if (!account.isCDaiApproved) {
+    await approveCDai(account)
+  }
   const { createContract, send, createMethod } = createNetwork(account)
   const cDaiTokenWithSigner = createContract(CDaiAbi, config.get('network.addresses.CDaiToken'))
   const method = createMethod(cDaiTokenWithSigner, 'mint', balance)
