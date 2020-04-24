@@ -5,11 +5,17 @@ module.exports = {
     secretOptions: {
       expiresIn: '30d'
     },
-    port: 3000
+    port: 3000,
+    auth: {
+      google: {
+        clientId:
+          '409833050808-omel02bdcf5h2pvbmc7k1mg8l8okh9u0.apps.googleusercontent.com'
+      }
+    }
   },
   mongo: {
     debug: true,
-    uri: 'mongodb://localhost/gaming',
+    uri: 'mongodb://localhost/genie',
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true
