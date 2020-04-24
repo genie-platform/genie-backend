@@ -10,14 +10,13 @@ const UserSchema = new Schema(
       validate: [validator.isEmail, 'invalid email']
     },
     name: { type: String, required: [true, "can't be blank"] },
-    externalId: { type: String, required: [true, "can't be blank"] },
     provider: { type: String, required: [true, "can't be blank"] },
     accountAddress: { type: String }
   },
   { timestamps: true }
 )
 
-UserSchema.index({ externalId: 1 }, { unique: true })
+UserSchema.index({ email: 1 }, { unique: true })
 
 const User = mongoose.model('User', UserSchema)
 
