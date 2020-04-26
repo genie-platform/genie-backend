@@ -21,14 +21,13 @@ router.post('/google', async (req, res) => {
     audience: clientId
   })
 
-  const { email, sub, name } = ticket.getPayload()
+  const { email, name } = ticket.getPayload()
 
-  let user = await User.findOne({ externalId: sub })
+  let user = await User.findOne({ email: email })
 
   if (!user) {
     user = await User({
       email,
-      externalId: sub,
       name,
       provider: 'google'
     }).save()
