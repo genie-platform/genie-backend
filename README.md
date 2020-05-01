@@ -15,9 +15,9 @@ Genie levarages the Ethereum Network, it uses [DAI](https://makerdao.com/) (doll
 
 Genie's alpha version is up and running, connected to the Kovan network. Try it on https://api.thegenie.xyz/. Or play the [first game](http://survivor.thegenie.xyz/) built with genie.
 
-# Contact and follow us
-- Follow us on [twitter](https://twitter.com/genieplatform)
-- Write us to thegeniexyz@gmail.com
+# Contact and Follow
+- Join on [Discord](https://discord.gg/TGMdJgw)
+- Follow  on [twitter](https://twitter.com/genieplatform)
 
 # Use cases
 
