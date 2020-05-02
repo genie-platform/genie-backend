@@ -1,3 +1,6 @@
+## Depricated soon, you should create your funding via the https://github.com/genie-platform/genie-app/
+
+
 # Bootstrapping your game
 
 After the server running you need to set up your game and the funding account.
