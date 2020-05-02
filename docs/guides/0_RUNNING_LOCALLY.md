@@ -18,4 +18,6 @@
 
     export GENIE_SECRETS_ACCOUNTS_MNEMONIC="mnemonic seed"
     ```
- 4. Start the server with `npm start`
+ 4. Start the server with `npm start
+ 
+ 5. Open http://localhost:3000/is_running in browser or with `curl`, you should receive `{"response":"ok"}`
