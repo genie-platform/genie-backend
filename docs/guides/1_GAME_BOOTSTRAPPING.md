@@ -1,4 +1,4 @@
-## Depricated soon, you should create your funding via the https://github.com/genie-platform/genie-app/
+## Deprecated soon, you should create your funding via the https://github.com/genie-platform/genie-app/
 
 
 # Bootstrapping your game
