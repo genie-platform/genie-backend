@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-router.use('/pooling', require('./pooling'))
+router.use('/funding', require('./funding'))
 router.use('/prizes', require('./prizes'))
 router.use('/games', require('./games'))
 router.use('/login', require('./login'))
