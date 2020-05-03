@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-const FundSchema = new Schema({
-  fundOwner: { type: mongoose.ObjectId, required: [true, "can't be blank"] },
+const PoolSchema = new Schema({
+  poolOwner: { type: mongoose.ObjectId, required: [true, "can't be blank"] },
   contractAddress: String,
   txHash: { type: String, required: [true, "can't be blank"] },
   name: { type: String, required: [true, "can't be blank"] },
@@ -14,6 +14,6 @@ const FundSchema = new Schema({
   rewardDuration: { type: Number, default: null },
 }, { timestamps: true })
 
-const Fund = mongoose.model('Fund', FundSchema)
+const Pool = mongoose.model('Pool', PoolSchema)
 
-module.exports = Fund
+module.exports = Pool

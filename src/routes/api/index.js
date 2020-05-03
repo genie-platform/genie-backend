@@ -1,10 +1,10 @@
 const router = require('express').Router()
 
-router.use('/funding', require('./funding'))
+router.use('/pooling', require('./pooling'))
 router.use('/prizes', require('./prizes'))
 router.use('/games', require('./games'))
 router.use('/login', require('./login'))
-router.use('/funds', require('./funds'))
+router.use('/pools', require('./pools'))
 
 router.use(function (err, req, res, next) {
   if (err.name === 'ValidationError') {
