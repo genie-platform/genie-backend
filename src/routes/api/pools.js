@@ -17,7 +17,7 @@ const client = new OAuth2Client(clientId)
  * @apiGroup Pool
  * @apiDescription Retrieves pool object
  *
-* @apiParam {String} poolId pool's id
+ * @apiParam {String} poolId pool's id
  *
 **/
 router.get('/:poolId', async (req, res, next) => {
@@ -47,13 +47,30 @@ router.post('/', auth.required, async (req, res, next) => {
   let user = await User.findOne({ email: req.user.email })
 
   // save pool
-  const pool = await new Pool({ name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, poolOwner: user._id }).save()
+  const pool = await new Pool({ name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, poolOwner: user._id, contractAddress: null }).save()
 
   return res.json({ data: { pool } })
 })
 
+/**
+ * @api {post} /pools/:poolId Update pool with id "poolId"
+ * @apiName Update pool data
+ * @apiGroup Pool
+ * @apiDescription Updates pool data, returns the updated pool
+ *
+ * @apiParam {String} poolId pool's id
+ *
+ *
+**/
 router.post('/:poolId', auth.required, async (req, res, next) => {
   // update the pool's contract address
+  const poolId = req.params.poolId
+  const contractAddress = req.body.contractAddress
+  const poolDetails = req.body.poolDetails
+
+  const pool = await Pool.findOneAndUpdate(poolId, { ...poolDetails }, { new: true })
+
+  return res.json({ data: { pool } })
 })
 
 module.exports = router
