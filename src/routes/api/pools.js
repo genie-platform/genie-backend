@@ -1,15 +1,9 @@
 const router = require('express').Router()
 const mongoose = require('mongoose')
 const auth = require('@routes/auth')
-const config = require('config')
 
 const Pool = mongoose.model('Pool')
 const User = mongoose.model('User')
-
-const { OAuth2Client } = require('google-auth-library')
-
-const clientId = config.get('api.auth.google.clientId')
-const client = new OAuth2Client(clientId)
 
 /**
  * @api {get} /pools/:poolId Retrieve pool
@@ -44,7 +38,7 @@ router.post('/', auth.required, async (req, res, next) => {
   const { name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash } = req.body
 
   // get owner user object from db
-  let user = await User.findOne({ email: req.user.email })
+  let user = await User.findOne({ _id: req.user.id })
 
   // save pool
   const pool = await new Pool({ name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, poolOwner: user._id, contractAddress: null }).save()
@@ -62,7 +56,7 @@ router.post('/', auth.required, async (req, res, next) => {
  *
  *
 **/
-router.post('/:poolId', auth.required, async (req, res, next) => {
+router.put('/:poolId', auth.required, async (req, res, next) => {
   // update the pool's contract address
   const poolId = req.params.poolId
   const contractAddress = req.body.contractAddress
