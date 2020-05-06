@@ -9,7 +9,7 @@ module.exports = {
     auth: {
       google: {
         clientId:
-          '1045886499834-f532k23telkl5ckt4cti6rcvnmspp6rf.apps.googleusercontent.com'
+          '1045886499834-t0vrjhlq8ep534njprdp8k80jl4iqdra.apps.googleusercontent.com'
       }
     }
   },
