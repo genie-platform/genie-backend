@@ -36,6 +36,66 @@ router.get('/contract/:contractAddress', async (req, res, next) => {
 })
 
 /**
+ * @api {get} /pools Retrieve all pools
+ * @apiName GetAllPool
+ * @apiGroup Pool
+ * @apiDescription Retrieves all pool objects
+ *
+ * @apiParam None
+ *
+**/
+router.get('/', async (req, res, next) => {
+  
+  var page = 1;
+  var limit = 10;
+  var query = {};
+
+  try {
+    page = parseInt(req.query.page);
+    limit = parseInt(req.query.limit);
+  } catch(err){
+      //default value set above
+  }
+  
+  query.skip = (page - 1) * limit;
+  query.limit = limit;
+
+  Pool.find({},{},query,(err,data) => {
+    // Mongo command to fetch all data from collection.
+        if(err) {
+            response = {"error" : true,"message" : "Error fetching Pool data"};
+        } else {
+            response = {"error" : false,"message" : data};
+        }
+        res.json(response);
+    });
+
+});
+
+/**
+ * @api {get} /pools/:ownerAddreess Retrieve all pools for a OWNER
+ * @apiName GetPoolForOwner
+ * @apiGroup Pool
+ * @apiDescription Retrieves all pool objects for a owner addeess
+ *
+ * @apiParam {String} owner Address
+ *
+**/
+router.get('/:ownerAddress', async (req, res, next) => {
+
+  Pool.find({ poolOwner: req.params.poolOwner},(err,data) => {
+    // Mongo command to fetch all data from collection.
+        if(err) {
+            response = {"error" : true,"message" : "Error fetching Pool data"};
+        } else {
+            response = {"error" : false,"message" : data};
+        }
+        res.json(response);
+    });
+
+});
+
+/**
  * @api {post} /pools/ Create new pool
  * @apiName CreatePool
  * @apiGroup Pool
