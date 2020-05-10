@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate-v2')
+
 const { Schema } = mongoose
 
 const PoolSchema = new Schema({
@@ -14,6 +16,10 @@ const PoolSchema = new Schema({
   rewardDuration: { type: Number, default: null },
 }, { timestamps: true })
 
+PoolSchema.plugin(mongoosePaginate)
+
 const Pool = mongoose.model('Pool', PoolSchema)
+
+Pool.paginate().then({})
 
 module.exports = Pool
