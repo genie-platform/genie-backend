@@ -72,9 +72,7 @@ router.post('/', auth.required, async (req, res, next) => {
  *
 **/
 router.put('/:poolId', auth.required, async (req, res, next) => {
-  // update the pool's contract address
   const poolId = req.params.poolId
-  const contractAddress = req.body.contractAddress
   const poolDetails = req.body.poolDetails
 
   const pool = await Pool.findOneAndUpdate(poolId, { ...poolDetails }, { new: true })
