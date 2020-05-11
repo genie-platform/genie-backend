@@ -21,6 +21,21 @@ router.get('/:poolId', async (req, res, next) => {
 })
 
 /**
+ * @api {get} /pools/contract/:contractAddress Retrieve by address
+ * @apiName GetPoolByAddress
+ * @apiGroup Pool
+ * @apiDescription Fecthes pool object by pool's contract address
+ *
+ * @apiParam {String} contractAddress pool's contract address
+ *
+**/
+router.get('/contract/:contractAddress', async (req, res, next) => {
+  const { contractAddress } = req.params
+  const pool = await Pool.findOne({ contractAddress })
+  return res.json({ data: pool })
+})
+
+/**
  * @api {post} /pools/ Create new pool
  * @apiName CreatePool
  * @apiGroup Pool
