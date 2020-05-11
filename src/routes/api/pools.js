@@ -21,10 +21,10 @@ router.get('/:poolId', async (req, res, next) => {
 })
 
 /**
- * @api {get} /pools/:poolId Retrieve pool
+ * @api {get} /pools/contract/:contractAddress Retrieve by address
  * @apiName GetPoolByAddress
  * @apiGroup Pool
- * @apiDescription Retrieves pool object
+ * @apiDescription Fecthes pool object by pool's contract address
  *
  * @apiParam {String} contractAddress pool's contract address
  *
