@@ -20,6 +20,6 @@ PoolSchema.plugin(mongoosePaginate)
 
 const Pool = mongoose.model('Pool', PoolSchema)
 
-Pool.paginate().then({})
+//Pool.paginate().then({})
 
 module.exports = Pool
