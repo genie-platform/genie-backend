@@ -50,13 +50,13 @@ router.get('/contract/:contractAddress', async (req, res, next) => {
  *
 **/
 router.post('/', auth.required, async (req, res, next) => {
-  const { name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, contractAddress } = req.body
+  const { name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, contractAddress, poolOwnerAddress } = req.body
 
   // get owner user object from db
   let user = await User.findOne({ _id: req.user.id })
 
   // save pool
-  const pool = await new Pool({ name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, poolOwner: user._id, contractAddress }).save()
+  const pool = await new Pool({ name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, poolOwner: user._id, contractAddress, poolOwnerAddress }).save()
 
   return res.json({ data: { pool } })
 })
