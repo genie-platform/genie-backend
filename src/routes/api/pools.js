@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const mongoose = require('mongoose')
 const auth = require('@routes/auth')
-const paginate = require('express-paginate')
 
 const Pool = mongoose.model('Pool')
 const User = mongoose.model('User')
@@ -46,8 +45,8 @@ router.get('/contract/:contractAddress', async (req, res, next) => {
  *
 **/
 router.get('/', async (req, res, next) => {
-  const { poolOwner } = req.query
-  const { docs, hasNextPage } = await Pool.paginate(poolOwner ? { poolOwner } : {}, req.query)
+  const { poolOwnerAddress } = req.query
+  const { docs, hasNextPage } = await Pool.paginate(poolOwnerAddress ? { poolOwnerAddress } : {}, req.query)
 
   res.json({
     object: 'list',

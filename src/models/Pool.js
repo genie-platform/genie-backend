@@ -4,7 +4,8 @@ const mongoosePaginate = require('mongoose-paginate-v2')
 const { Schema } = mongoose
 
 const PoolSchema = new Schema({
-  poolOwner: { type: String, required: [true, "can't be blank"] },
+  poolOwner: { type: mongoose.ObjectId, required: [true, "can't be blank"] },
+  poolOwnerAddress: { type: String, required: [true, "can't be blank"] },
   contractAddress: String,
   txHash: { type: String, required: [true, "can't be blank"] },
   name: { type: String, required: [true, "can't be blank"] },
