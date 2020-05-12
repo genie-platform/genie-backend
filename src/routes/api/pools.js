@@ -1,9 +1,26 @@
 const router = require('express').Router()
 const mongoose = require('mongoose')
 const auth = require('@routes/auth')
+const paginate = require('express-paginate')
 
 const Pool = mongoose.model('Pool')
 const User = mongoose.model('User')
+
+/**
+ * @api {get} /pools/owner:poolOwner Retrieve all pools for a OWNER
+ * @apiName GetPoolForOwner
+ * @apiGroup Pool
+ * @apiDescription Retrieves all pool objects for a owner addeess
+ *
+ * @apiParam {String} poolOwner Address  pool owner
+ *
+**/
+router.get('/owner/:poolOwner', async (req, res, next) => {
+  console.log('owner')
+  const { poolOwner } = req.params
+  const pool = await Pool.find({ poolOwner })
+  return res.json({ data: pool })
+})
 
 /**
  * @api {get} /pools/:poolId Retrieve pool
@@ -15,6 +32,8 @@ const User = mongoose.model('User')
  *
 **/
 router.get('/:poolId', async (req, res, next) => {
+  console.log('id')
+
   const { poolId } = req.params
   const pool = await Pool.findById(poolId)
   return res.json({ data: pool })
@@ -45,47 +64,28 @@ router.get('/contract/:contractAddress', async (req, res, next) => {
  *
 **/
 router.get('/', async (req, res, next) => {
-  
-  var page = 1;
-  var limit = 10;
-  var query = {};
+  const [ results, itemCount ] = await Promise.all([
+    Pool.find({}).limit(req.query.limit).skip(req.skip).lean().exec(),
+    Pool.count({})
+  ])
 
-  try {
-    page = parseInt(req.query.page);
-    limit = parseInt(req.query.limit);
-  } catch(err){
-      //default value set above
-  }
-  
-  query.skip = (page - 1) * limit;
-  query.limit = limit;
+  const pageCount = Math.ceil(itemCount / req.query.limit)
 
-  Pool.find({},{},query,(err,data) => {
-    // Mongo command to fetch all data from collection.
-        if(err) {
-            response = {"error" : true,"message" : "Error fetching Pool data"};
-        } else {
-            response = {"error" : false,"message" : data};
-        }
-        res.json(response);
-    });
-
-});
-
-/**
- * @api {get} /pools/owner:poolOwner Retrieve all pools for a OWNER
- * @apiName GetPoolForOwner
- * @apiGroup Pool
- * @apiDescription Retrieves all pool objects for a owner addeess
- *
- * @apiParam {String} owner Address  pool owner
- *
-**/
-router.get('/owner/:poolOwner', async (req, res, next) => {
-  const { poolOwner } = req.params
-  const pool = await Pool.find({poolOwner})
-  return res.json({data: pool })
-});
+  res.json({
+    object: 'list',
+    has_more: paginate.hasNextPages(req)(pageCount),
+    data: results
+  })
+  // Pool.find({}, {}, query, (err, data) => {
+  //   // Mongo command to fetch all data from collection.
+  //   if (err) {
+  //     response = { 'error': true, 'message': 'Error fetching Pool data' }
+  //       } else {
+  //     response = { 'error': false, 'message': data }
+  //       }
+  //   res.json(response)
+  //   })
+})
 
 /**
  * @api {post} /pools/ Create new pool
