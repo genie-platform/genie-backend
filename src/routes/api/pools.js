@@ -36,6 +36,26 @@ router.get('/contract/:contractAddress', async (req, res, next) => {
 })
 
 /**
+ * @api {get} /pools Retrieve all pools
+ * @apiName GetAllPool
+ * @apiGroup Pool
+ * @apiDescription Retrieves all pool objects
+ *
+ * @apiParam None
+ *
+**/
+router.get('/', async (req, res, next) => {
+  const { poolOwnerAddress } = req.query
+  const { docs, hasNextPage } = await Pool.paginate(poolOwnerAddress ? { poolOwnerAddress } : {}, req.query)
+
+  res.json({
+    object: 'list',
+    hasNextPage,
+    data: docs
+  })
+})
+
+/**
  * @api {post} /pools/ Create new pool
  * @apiName CreatePool
  * @apiGroup Pool
