@@ -58,26 +58,18 @@ router.get('/', async (req, res, next) => {
 });
 
 /**
- * @api {get} /pools/:ownerAddreess Retrieve all pools for a OWNER
+ * @api {get} /pools/owner:poolOwner Retrieve all pools for a OWNER
  * @apiName GetPoolForOwner
  * @apiGroup Pool
  * @apiDescription Retrieves all pool objects for a owner addeess
  *
- * @apiParam {String} owner Address
+ * @apiParam {String} owner Address  pool owner
  *
 **/
-router.get('/:ownerAddress', async (req, res, next) => {
-
-  Pool.find({ poolOwner: req.params.poolOwner},(err,data) => {
-    // Mongo command to fetch all data from collection.
-        if(err) {
-            response = {"error" : true,"message" : "Error fetching Pool data"};
-        } else {
-            response = {"error" : false,"message" : data};
-        }
-        res.json(response);
-    });
-
+router.get('/owner/:poolOwner', async (req, res, next) => {
+  const { poolOwner } = req.params
+  const pool = await Pool.find({poolOwner})
+  return res.json({data: pool })
 });
 
 /**
