@@ -70,13 +70,13 @@ router.get('/', async (req, res, next) => {
  *
 **/
 router.post('/', auth.required, async (req, res, next) => {
-  const { name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash } = req.body
+  const { name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, contractAddress, poolOwnerAddress } = req.body
 
   // get owner user object from db
   let user = await User.findOne({ _id: req.user.id })
 
   // save pool
-  const pool = await new Pool({ name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, poolOwner: user._id, contractAddress: null }).save()
+  const pool = await new Pool({ name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, poolOwner: user._id, contractAddress, poolOwnerAddress }).save()
 
   return res.json({ data: { pool } })
 })
@@ -92,12 +92,10 @@ router.post('/', auth.required, async (req, res, next) => {
  *
 **/
 router.put('/:poolId', auth.required, async (req, res, next) => {
-  // update the pool's contract address
   const poolId = req.params.poolId
-  const contractAddress = req.body.contractAddress
-  const poolDetails = req.body.poolDetails
+  const poolDetails = req.body
 
-  const pool = await Pool.findOneAndUpdate(poolId, { ...poolDetails }, { new: true })
+  const pool = await Pool.findByIdAndUpdate(poolId, { ...poolDetails }, { new: true })
 
   return res.json({ data: { pool } })
 })

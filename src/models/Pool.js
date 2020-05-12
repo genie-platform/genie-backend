@@ -5,9 +5,9 @@ const { Schema } = mongoose
 
 const PoolSchema = new Schema({
   poolOwner: { type: mongoose.ObjectId, required: [true, "can't be blank"] },
-  poolOwnerAddress: { type: String, required: [true, "can't be blank"] },
+  poolOwnerAddress: String,
   contractAddress: String,
-  txHash: { type: String, required: [true, "can't be blank"] },
+  txHash: String,
   name: { type: String, required: [true, "can't be blank"] },
   description: { type: String, required: [true, "can't be blank"] },
   lockValue: { type: Number, required: [true, "can't be blank"] },
