@@ -7,22 +7,6 @@ const Pool = mongoose.model('Pool')
 const User = mongoose.model('User')
 
 /**
- * @api {get} /pools/owner:poolOwner Retrieve all pools for a OWNER
- * @apiName GetPoolForOwner
- * @apiGroup Pool
- * @apiDescription Retrieves all pool objects for a owner addeess
- *
- * @apiParam {String} poolOwner Address  pool owner
- *
-**/
-router.get('/owner/:poolOwner', async (req, res, next) => {
-  console.log('owner')
-  const { poolOwner } = req.params
-  const pool = await Pool.find({ poolOwner })
-  return res.json({ data: pool })
-})
-
-/**
  * @api {get} /pools/:poolId Retrieve pool
  * @apiName GetPool
  * @apiGroup Pool
@@ -32,8 +16,6 @@ router.get('/owner/:poolOwner', async (req, res, next) => {
  *
 **/
 router.get('/:poolId', async (req, res, next) => {
-  console.log('id')
-
   const { poolId } = req.params
   const pool = await Pool.findById(poolId)
   return res.json({ data: pool })
@@ -64,27 +46,14 @@ router.get('/contract/:contractAddress', async (req, res, next) => {
  *
 **/
 router.get('/', async (req, res, next) => {
-  const [ results, itemCount ] = await Promise.all([
-    Pool.find({}).limit(req.query.limit).skip(req.skip).lean().exec(),
-    Pool.count({})
-  ])
-
-  const pageCount = Math.ceil(itemCount / req.query.limit)
+  const { poolOwner } = req.query
+  const { docs, hasNextPage } = await Pool.paginate(poolOwner ? { poolOwner } : {}, req.query)
 
   res.json({
     object: 'list',
-    has_more: paginate.hasNextPages(req)(pageCount),
-    data: results
+    hasNextPage,
+    data: docs
   })
-  // Pool.find({}, {}, query, (err, data) => {
-  //   // Mongo command to fetch all data from collection.
-  //   if (err) {
-  //     response = { 'error': true, 'message': 'Error fetching Pool data' }
-  //       } else {
-  //     response = { 'error': false, 'message': data }
-  //       }
-  //   res.json(response)
-  //   })
 })
 
 /**
