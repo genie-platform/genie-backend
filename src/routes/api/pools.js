@@ -71,18 +71,16 @@ router.get('/', async (req, res, next) => {
  *  }
  *
 **/
-router.post('/',  async (req, res, next) => {
-//router.post('/', auth.required, async (req, res, next) => {
+router.post('/', auth.required, async (req, res, next) => {
   const { name, description, lockValue, icon, coverImage, winnerDescription, rewardDuration, txHash, contractAddress, poolOwnerAddress } = req.body
 
   // get owner user object from db
-  //let user = await User.findOne({ _id: req.user.id })
+  let user = await User.findOne({ _id: req.user.id })
 
   var skylink = await getSkylink(coverImage);
 
   // save pool
-  //const pool = await new Pool({ name, description, lockValue, icon, coverImage:skylink, winnerDescription, rewardDuration, txHash, poolOwner: user._id, contractAddress, poolOwnerAddress }).save()
-  const pool = await new Pool({ name, description, lockValue, icon, coverImage:skylink, winnerDescription, rewardDuration, txHash, poolOwner: 'BpsPoolOwner', contractAddress, poolOwnerAddress }).save()
+  const pool = await new Pool({ name, description, lockValue, icon, coverImage:skylink, winnerDescription, rewardDuration, txHash, poolOwner: user._id, contractAddress, poolOwnerAddress }).save()
   
   return res.json({ data: { pool } })
 })
