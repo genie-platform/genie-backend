@@ -14,7 +14,9 @@ const PoolSchema = new Schema({
   icon: { type: String, required: [true, "can't be blank"] },
   coverImage: { type: String, required: [true, "can't be blank"] },
   winnerDescription: String,
-  rewardDuration: { type: Number, default: null }
+  rewardDuration: { type: Number, default: null },
+  game: { type: String, required: [true, "can't be blank"] },
+  winningCondition: Object
 }, { timestamps: true })
 
 PoolSchema.plugin(mongoosePaginate)
