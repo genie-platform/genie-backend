@@ -45,5 +45,15 @@ module.exports = {
     poe: {
       name: 'Path of Exile'
     }
+  },
+  agenda: {
+    args: {
+      maxConcurrency: 1
+    },
+    tasks: {
+      lookupWinners: {
+        every: '1 minute'
+      }
+    }
   }
 }
