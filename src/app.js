@@ -8,6 +8,7 @@ const util = require('util')
 const config = require('config')
 require('express-async-errors')
 require('./services/mongoose')
+const agenda = require('./services/agenda')
 
 async function init () {
   console.log(util.inspect(config, { depth: null }))
@@ -29,6 +30,8 @@ async function init () {
   app.use(paginate.middleware(10, 50))
 
   app.use(require('./routes'))
+
+  agenda.start()
 
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
