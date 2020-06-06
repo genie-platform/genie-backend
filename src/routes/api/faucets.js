@@ -15,3 +15,9 @@ router.post('/dai', auth.required, async (req, res, next) => {
     return res.json({ data: {} })
   }
 })
+
+router.get('/', auth.required, async (req, res, next) => {
+  console.log("FAUCETS")
+})
+
+module.exports = router
