@@ -5,6 +5,7 @@ router.use('/prizes', require('./prizes'))
 router.use('/games', require('./games'))
 router.use('/login', require('./login'))
 router.use('/pools', require('./pools'))
+router.use('/faucets', require('./faucets'))
 
 router.use(function (err, req, res, next) {
   if (err.name === 'ValidationError') {
