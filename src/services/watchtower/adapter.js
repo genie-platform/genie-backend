@@ -50,11 +50,11 @@ const poeAdapter = async (body, res) => {
   const level = body.data.level
   const pool = body.data.pool
 
-  console.log({ level })
-  console.log({ pool })
+  // console.log({ level })
+  // console.log({ pool })
 
   const poolAddress = getPoolAddress(pool)
-  console.log({ poolAddress })
+  // console.log({ poolAddress })
 
   // getting list of users that joined the pool
   const query = `query getAccounts($poolAddress: String!) {
