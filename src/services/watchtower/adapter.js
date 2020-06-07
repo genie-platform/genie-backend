@@ -1,5 +1,7 @@
 const { request } = require('graphql-request')
 const axios = require('axios')
+const BigNumber = require('bignumber.js')
+const { isAddress } = require('web3-utils')
 
 const getAccountCharacters = async accountName => {
   var options = {
@@ -34,14 +36,25 @@ const getAccountCharacter = async (accountName, genieToken) => {
   } catch (error) {
     console.error(error)
   }
+}
 
+const getPoolAddress = (pool) => {
+  if (isAddress(pool)) {
+    return pool
+  }
+  return '0x' + new BigNumber(pool).toString(16)
 }
 
 // Path of Exile adapter
 const poeAdapter = async (body, res) => {
   const level = body.data.level
   const pool = body.data.pool
-  const poolAddress = pool.substring(0, 42)
+
+  // console.log({ level })
+  // console.log({ pool })
+
+  const poolAddress = getPoolAddress(pool)
+  // console.log({ poolAddress })
 
   // getting list of users that joined the pool
   const query = `query getAccounts($poolAddress: String!) {
@@ -57,7 +70,6 @@ const poeAdapter = async (body, res) => {
     poolAddress
   }
 
-  console.log(poolAddress)
   const { accountPools } = await request(
     'https://api.thegraph.com/subgraphs/name/genie-platform/genie-graph-v2',
     query,
@@ -85,7 +97,7 @@ const poeAdapter = async (body, res) => {
         data: winnerAccount
       }
 
-      // console.log(response)
+      console.log(response)
       return res(200, response)
     }
   }
