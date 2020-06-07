@@ -23,7 +23,6 @@ const sendDaiFaucet = withAccount(async (account, poolAddress, userAddress) => {
 
   // check if user have less dai than the ticket price
   const userBalance = await daiToken.methods.balanceOf(userAddress).call()
-  // console.log({ userBalance })
 
   if (new BigNumber(userBalance).isLessThan(ticketPrice)) {
     // send user [ticket price] DAI

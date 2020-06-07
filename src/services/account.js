@@ -27,8 +27,9 @@ const withAccount = (func, getAccount) => async (...params) => {
     throw new Error('no unlocked accounts available')
   }
   try {
-    await func(account, ...params)
+    const result = await func(account, ...params)
     await unlockAccount(account.address)
+    return result
   } catch (e) {
     await unlockAccount(account.address)
     throw e
