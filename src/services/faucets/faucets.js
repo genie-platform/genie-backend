@@ -38,21 +38,17 @@ const sendDaiFaucet = withAccount(async (account, poolAddress, userAddress) => {
 })
 
 /**
- * Sends dai to user with address userAddress
+ * Sends eth to user with address userAddress
  *
- * Checks if user has less dai than the pool ticket price,
- * and sends that amount to the user if true
+ * Checks if user have enought eth to join the pool
+ * If the user doesn't have enough eth, he sends it to the user
  */
 const sendEthFaucet = withAccount(async (account, userAddress) => {
   const { web3 } = createNetwork(account)
 
-  // const poolContract = createContract(Funding, poolAddress)
-  // const daiToken = createContract(Erc20, config.network.addresses.DaiToken)
-
-  // get pool ticket price
   const faucetAmount = toWei(config.get('network.faucets.eth.amount'))
 
-  // check if user have less dai than the ticket price
+  // check if user have enought eth to join the pool
   const userBalance = await web3.eth.getBalance(userAddress)
 
   if (new BigNumber(userBalance).isLessThan(faucetAmount)) {
