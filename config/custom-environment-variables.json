@@ -23,6 +23,11 @@
     }
   },
   "network": {
-    "provider": "GENIE_PROVIDER"
+    "provider": "GENIE_PROVIDER",
+    "faucets": {
+      "eth": {
+        "amount": "GENIE_FAUCETS_ETH_AMOUNT"
+      }
+    }
   }
 }
