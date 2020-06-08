@@ -33,7 +33,7 @@ router.post('/dai', auth.required, async (req, res, next) => {
 })
 
 /**
-* @api {post} /faucets/eth send dai to user
+* @api {post} /faucets/eth send eth to user
 * @apiName SendEth
 * @apiGroup Faucets
 * @apiDescription Sends eth to user if he doesn't have enough to join the pool
