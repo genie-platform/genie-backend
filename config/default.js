@@ -39,6 +39,11 @@ module.exports = {
       options: {
         transactionConfirmationBlocks: 2
       }
+    },
+    faucets: {
+      eth: {
+        amount: '0.015'
+      }
     }
   },
   games: {
