@@ -17,7 +17,7 @@ const PoolSchema = new Schema({
   rewardDuration: { type: Number, default: null },
   game: { type: String, required: [true, "can't be blank"] },
   winningCondition: Object,
-  watchTower: { type: Boolean, default: false },
+  watchTower: { type: Boolean, default: true },
   isClosed: { type: Boolean, default: false }
 }, { timestamps: true })
 
