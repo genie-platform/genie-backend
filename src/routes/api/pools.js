@@ -95,7 +95,7 @@ router.put('/:poolId', auth.required, async (req, res, next) => {
   const poolId = req.params.poolId
   const poolDetails = req.body
 
-  const pool = await Pool.findByIdAndUpdate(poolId, { ...poolDetails }, { new: true })
+  const pool = await Pool.findByIdAndUpdate(poolId, { watchTower: true, ...poolDetails }, { new: true })
 
   return res.json({ data: { pool } })
 })
