@@ -63,7 +63,7 @@
     "morgan": "^1.9.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
-    "validator": "^10.10.0",
+    "validator": "^13.7.0",
     "web3": "^1.2.6",
     "web3-utils": "^1.2.6"
   },
