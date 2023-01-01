@@ -43,7 +43,7 @@
     "axios": "^0.19.2",
     "bignumber.js": "^9.0.0",
     "body-parser": "^1.18.3",
-    "config": "^1.30.0",
+    "config": "^3.3.8",
     "cors": "2.7.1",
     "debug": "2.6.9",
     "ethereumjs-wallet": "^0.6.3",
